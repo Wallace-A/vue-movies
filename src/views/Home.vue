@@ -2,10 +2,10 @@
   <div class="home">
     <div class="feature-card">
       <router-link to="/movie/tt0083658">
-        <img src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg" alt="Naruto Poster" class="featured-img" />
+        <img :src="featMovie.Poster" alt="Naruto Poster" class="featured-img" />
         <div class="detail">
-          <h3>Blade Runner</h3>
-          <p>Movie description</p>
+          <h3>{{ featMovie.Title }}</h3>
+          <p>{{ featMovie.Plot }}</p>
         </div>
       </router-link>
     </div>
@@ -37,13 +37,24 @@
 <script>
 // @ is an alias to /src
 //ref is similar to react hooks. 
-import { ref} from "vue";
+import { ref, onBeforeMount} from "vue";
 import env from "@/env.js";
 
 export default {
   setup () {
     const search = ref("");
     const movies = ref ([]);
+    const featMovie = ref({});
+    // on page load
+    onBeforeMount(() => {
+        fetch(`http://www.omdbapi.com/?apikey=${env.apikey}&i=tt0083658`)
+        .then(response => response.json())
+        .then(data => {
+            featMovie.value = data;
+            console.log(featMovie);
+        })
+    });
+    //fetch movie data on form submit
     const SearchMovies = () => {
       //check value of search from text input
       if(search.value != ""){
@@ -60,7 +71,8 @@ export default {
     return {
       search,
       movies,
-      SearchMovies
+      SearchMovies,
+      featMovie
     }
   }
   
@@ -75,7 +87,7 @@ export default {
       display: block;
       width: 100%;
       height: 300px;
-      object-fit: cover;
+      object-fit: fill;
 
       position: relative;
       z-index: 0;

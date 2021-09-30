@@ -3,7 +3,7 @@
       <img :src="movie.Poster" alt="Movie Poster" class="featured-img">
       <h2>{{ movie.Title }}</h2>
       <p> {{ movie.Year }}</p>
-      <p>{{ movie.Plot}}</p>
+      <p>{{ movie.Plot }}</p>
   </div>
 </template>
 
