@@ -14,7 +14,7 @@
 
 <style lang="scss">
   *{
-    margin: 4;
+    margin: 0;
     padding: 0;
     box-sizing:border-box;
     font-family: "Fira Sans", sans-serif; 
