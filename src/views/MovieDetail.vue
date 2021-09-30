@@ -1,6 +1,6 @@
 <template>
   <div class="movie-detail">
-      DETAIL
+      DETAIL {{ $route.params.id }}
   </div>
 </template>
 
