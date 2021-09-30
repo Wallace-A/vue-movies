@@ -18,10 +18,11 @@
     padding: 0;
     box-sizing:border-box;
     font-family: "Fira Sans", sans-serif; 
+    &::selection {
+      background: transparent(#42BB83, 0.5);
+    }
   }
-  &::selection {
-    background: transparent(#42BB83, 0.5);
-  }
+  
 
   body {
     background-color: #35495E;
